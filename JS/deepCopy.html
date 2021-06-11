@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深拷贝</title>
+</head>
+
+<body>
+    <script>
+        function deepCopy(obj) {
+            let objCopy = Array.isArray(obj) ? [] : {};
+            if (obj && typeof (obj) === "object") {
+                for (key in obj) {
+                    // hasOwnProperty 可以判断属性是否在实例中，（还可能在原型里）
+                    if (obj.hasOwnProperty(key) && typeof obj[key] === "object") {
+                        objCopy[key] = deepCopy(obj[key]);
+                    } else {
+                        objCopy[key] = obj[key];
+                    }
+                }
+            }
+            return objCopy;
+        }
+        let a = [1, [2, 3], 4];
+        b = deepCopy(a);
+        a[1][0] = 3;
+        console.log(a, b);
+
+    </script>
+</body>
+
+</html>

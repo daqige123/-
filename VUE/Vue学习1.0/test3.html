@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind: class style</title>
+    <script src="vue.js"></script>
+    <style>
+        .daqige {
+            color: red;
+        }
+
+        .active {
+            color: aqua;
+        }
+
+        .background {
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:class="fuzhi" style="width:200px; height: 200px; text-align: center; line-height: 200px; ">
+            hello Vue!
+        </div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                bg: true,
+                da: true,
+                isActive: true,
+            },
+            computed: {
+                fuzhi: function () {
+                    return {
+                        background: this.bg,
+                        daqige: this.da,
+                        active: this.isActive
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

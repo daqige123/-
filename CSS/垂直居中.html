@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直居中</title>
+    <style>
+        /* 第一种方法：使用定位，子绝父相 子元素的绝对定位是相对父元素的位置来说的，绝对定位脱标，不占位置，而相对定位不脱标
+            子元素使用绝对定位，相对于父盒子 先top：50%， 再left50%；最后再利用子盒子与父盒子的 margin，把盒子挤到
+        
+        */
+        .big {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            background: red;
+        }
+
+        .small {
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* margin-top: -100px;
+            margin-left: -100px; */
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big">
+        <div class="small">
+
+        </div>
+    </div>
+</body>
+
+</html>

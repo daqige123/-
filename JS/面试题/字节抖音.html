@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型和this</title>
+</head>
+
+<body>
+    <script>
+        console.log(Test);  //  Test { 函数}
+
+        var obj = {
+            key: 1,
+        }
+
+        //  var Test = 123;
+
+        console.log(Test)     // 123
+
+        function Test(key) {
+            this.obj = { key }
+        }
+
+        Test.prototype.getObjKey = function () {
+            return this.obj.key;
+        }
+
+        var { getObjKey } = new Test(3);
+
+        console.log(getObjKey())
+
+    </script>
+
+</body>
+
+</html>

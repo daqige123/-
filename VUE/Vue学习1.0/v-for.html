@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-for</title>
+    <script src='vue.js'> </script>
+</head>
+
+<body>
+    <div id="app">
+        <ol id="example">
+            <li v-for=" item in items2" key="item">
+                {{item}}
+            </li>
+        </ol>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                items: [
+                    { text: "daqige1" },
+                    { text: 'daqige2' },
+                    { text: 'daqige3' }
+                ],
+                items2: {
+                    name: "daqige",
+                    age: 12,
+                    sayName: function () {
+                        return "wojiaodaqige!";
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

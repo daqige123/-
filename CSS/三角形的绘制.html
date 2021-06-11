@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>三角型的绘制</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        /* 原理 ：
+            我们不给一个内容宽高（也就是style里面的height, width），也不给内边距，只给边框大小，那么就将盒子分成了4个三角形。
+            想要留那一边，就将border的其它三条边transprant. */
+        #triangle-up {
+            width: 0;
+            height: 0;
+            border-top: 100px solid pink;
+            border-bottom: 100px solid yellow;
+            border-right: 100px solid black;
+            border-left: 100px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="triangle-up"></div>
+</body>
+
+</html>

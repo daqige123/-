@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float实现三栏布局</title>
+    <style>
+        #left {
+            float: left;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        #center {
+            /* float: left; */
+            /* width: ; */
+            margin-left: 200px;
+            margin-right: 200px;
+            /* 如果不加上面这两行，那么当center里面的内容过多时，盒子被撑高时，下面的盒子显示内容时会溢出到左边和右边 */
+            height: 200px;
+            background-color: yellow;
+        }
+
+        #right {
+
+            float: right;
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="left"> </div>
+    <div id="right"> </div>
+    <div id="center"> </div>
+
+</body>
+
+
+</html>

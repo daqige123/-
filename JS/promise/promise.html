@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+
+<body>
+    <script>
+        // Promise(function)需要传入一个执行器函数executor(),可以是空函数。
+        // new Promise()
+
+        setTimeout(function () {
+            console.log("第一个回调！");
+            setTimeout(function () {
+                console.log("第二个回调！");
+                setTimeout(function () {
+                    console.log("这是第3个回调！")
+                    setTimeout(console.log("这是第四个回调！"), 1000)
+                }, 1000)
+            }, 1000)
+        }, 1000);
+
+        let p1 = new Promise((p1, p2) => {
+            console.log("第一个promise回调！")
+            setTimeout(p1, 1000)
+        })
+            .then(() => new Promise((p1, p2) => {
+                console.log("第2个promise回调！")
+                setTimeout(p1, 1000)
+            }))
+            .then(() => new Promise((p1, p2) => {
+                console.log("第3个promise回调！")
+                setTimeout(p1, 1000)
+            }))
+            .then(() => new Promise((p1, p2) => {
+                console.log("第4个promise回调！")
+                setTimeout(p1, 1000)
+            })).then(setTimeout(console.log("第五个promise回调！"), 1000))
+
+        let pAll = Promise.all([
+            new Promise((resolve, reject) => {
+                setTimeout(resolve({ name: 'daqige', age: 25 }), 2000);
+            }),
+
+            new Promise((resolve, reject) => {
+                setTimeout(resolve({ name: '张政', age: 25 }), 1000);
+            }),
+
+        ])
+        pAll.then(
+            result => {
+                console.log(result)
+                console.log(result[1])
+            }
+        );
+
+    </script>
+</body>
+
+</html>

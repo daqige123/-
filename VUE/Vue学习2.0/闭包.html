@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包研究</title>
+</head>
+
+<body>
+    <script>
+        // 闭包可以延长外部函数的局部变量的生命周期，比如可以用这个来实现累加器。
+        function sum() {
+            let n = 1;
+            return function () {
+                console.log(++n);
+            }
+        }
+        let a = sum();
+        a(); //  2
+        a();  // 3
+        a();  // 4
+        // 这里就是通过闭包， 将n的生命周期延长，然后通过多次调用a(), 实现了n的累加。
+    </script>
+</body>
+
+</html>

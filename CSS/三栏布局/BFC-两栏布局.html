@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC-两栏布局</title>
+
+    <!-- 这里主要用overflow来创建bfc 清除了浮动， 实现了两栏布局-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* body {
+            width: 100%;
+            position: relative;
+        } */
+
+        .left {
+            width: 50%;
+            height: 150px;
+            float: left;
+            background: rgb(139, 214, 78);
+            text-align: center;
+            line-height: 150px;
+            font-size: 20px;
+        }
+
+        .right {
+            /* 通过overflow创建了一个bfc*/
+            overflow: hidden;
+            /* width: auto; */
+            width: 50%;
+            height: 300px;
+            background: rgb(170, 54, 236);
+            text-align: center;
+            line-height: 300px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">LEFT</div>
+    <div class="right">RIGHT</div>
+
+</body>
+
+</html>

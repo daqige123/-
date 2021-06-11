@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-bind</title>
+    <script src="vue.js"></script>
+    <style>
+        .active {
+            border: 1px solid red;
+        }
+
+        .red {
+            background-color: red;
+            border: 1px solid black;
+        }
+
+        .green {
+            background-color: green;
+            border: 1px solid red;
+        }
+
+        .blue {
+            background-color: bule;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <img :src="imgSrc" :title="imgTitle + '!!!'">
+        <br>
+        <!-- 这里直接用三元表达式给class赋值，值不能动态改变 -->
+        <img :src="imgSrc" alt="" :title="imgTitle+'!!!'" :class="isActive?active:''">
+        <br>
+        <!-- 这里给图片绑定了一个点击事件，通过点击来确定 class的值 -->
+        <img :src=" imgSrc" alt="" :class="{active: isActive}" @click="toggleActive">
+
+        <img :src=" imgSrc" alt="" :class="colors" @click="changeColor('blue', 'red', 'green')">
+
+        <!-- 这里我是将colors 绑定到class上， 然后通过方法添加逻辑来改变colors的值，其实并不是使用上面的那种对象方法。 
+                    我的想法是 {colors: red, blue, red},其实里面的属性只能跟布尔值。    这种想法其实可以用数组来实现, 哈哈，想多了。还是不行。
+                    可能作者设计v-bind与class的时候是直接考虑这种模式: {red: true or false, blue: true or false, red: }
+                   （果然，里面只能跟布尔值）
+        
+                -->
+
+
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                imgSrc: "C:/Users/24026/Desktop/面试/大学毕业照片.jpg",
+                imgTitle: "daqige",
+                isActive: false,
+                colors: 'red',
+                count: 1,
+
+            },
+            methods: {
+                toggleActive: function () {
+                    this.isActive = !this.isActive;
+                },
+                changeColor: function () {
+                    this.count++;
+                    if (this.count % 2 === 0)
+                        this.colors = 'green';
+                    else if (this.count % 3 === 0) {
+                        this.colors = 'blue';
+                    }
+                    else {
+                        this.colors = 'red';
+                    }
+                },
+
+            }
+        })
+    </script>
+</body>
+
+</html>

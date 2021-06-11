@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象迭代和属性枚举方法</title>
+</head>
+
+<body>
+    <script>
+
+        // 1. in, 只要通过对象能访问到的属性都会返回true.（原型+ 实例上的）
+        // 2. for-in, 可以通过对象访问到的属性，且需要可枚举([[Enumberable]]:ture), (原型+实例)
+        // 3. Object.keys(), 只返回实例上的所有可枚举属性的名称的字符串数组。(不包含原型)
+        // 4. Object.getOwnPropertyNames(),返回实例上所有的属性，不管是否可枚举（不包含原型）
+        // 5. obj.hasOwnProperty("属性名") ，hasOwnProperty(obj, "属性名")只有实例上有这个属性才返回ture。(不包含原型)
+        // 对象的迭代 Object.values(), Object.entries();
+
+
+    </script>
+</body>
+
+</html>

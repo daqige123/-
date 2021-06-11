@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件的注册</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <template id="cpn1">
+        <div>
+            <h2>总次数{{count}}</h2>
+            <button @click="decrement">- </button>
+            <button @click="increment"> +</button>
+        </div>
+    </template>
+    <div id="app">
+
+        <mycon></mycon>
+    </div>
+
+    <script>
+        // 注册组件
+        Vue.component('mycon', {
+            data() {
+                return { count: 0 };
+            },
+            template: "#cpn1",
+            methods: {
+                decrement() {
+                    return this.count++;
+                },
+                increment() {
+                    return this.count--;
+                }
+            }
+        });
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                nima: "daquge1",
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

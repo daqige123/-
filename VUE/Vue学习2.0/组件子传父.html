@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件练习</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycpnt @rd-categoeies="showdata"></mycpnt>
+    </div>
+    <template id="mycpnt">
+        <div>
+            <p>点击我,将对应的商品种类传给父组件</p>
+            <button v-for="item in categories" @click="sendcategory(item)">{{item.name}}</button>
+        </div>
+ 
+
+    </template>
+
+    </template>
+    <script>
+        const mycpnt = {
+            template: '#mycpnt',
+            data() {
+                return {
+                    categories: [
+                        { id: 'aaa', name: 'daqige' },
+                        { id: 'bbb', name: 'zhangzheng' },
+                        { id: 'ccc', name: 'yuanwei' },
+                        { id: 'ddd', name: 'donglao' },
+                    ]
+                }
+            },
+            methods: {
+                sendcategory(item) {
+                    // 自定义一个事件, 那么肯定要给事件一个名字.
+                    this.$emit('rd-categoeies', item);
+                    console.log(item);
+                }
+            }
+        }
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            components: {
+                mycpnt,
+            },
+            methods: {
+                showdata(item) {
+                    console.log("this is received item   " + item.name + item.id);
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

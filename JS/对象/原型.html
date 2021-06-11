@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型</title>
+</head>
+
+<body>
+    <script>
+        // 1. 只要创建一个函数，就会自动按照规则为这个函数创建一个prototype属性，指向原型。
+        //    prototype并没有暴露给我们，但是一些主流浏览器会暴露__proto__属性，与prototype相同。
+        // 2. 原型会有一个constructor来指向构造函数。
+        function Person() {
+            this.name = "Daqige";      // 其实说实例和构造函数没关系，
+            this.age = 25;             // 使用new实例化的时候就按照this给实例添加属性了。
+            this.job = "softEngnire";   //  所以实例有什么属性 看看构造函数里面的this。
+        }
+        Person.prototype.sayName = function () {
+            console.log(this.name);      // 然后还可以通过prototype来指向原型，从而访问原型里的方法。
+        }
+        let person1 = new Person();
+        console.log(person1);
+        // 原型最大的问题： 实例调用原型中的引用类型的属性时，会直接改变应用属性的值。
+    </script>
+</body>
+
+</html>

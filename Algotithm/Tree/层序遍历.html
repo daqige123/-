@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>层序遍历</title>
+</head>
+
+<body>
+    <script>
+        function TreeNode(val, left, right) {
+            this.val = (val === undefined ? null : val);
+            this.left = (left === undefined ? null : left);
+            this.right = (right === undefined ? null : right);
+        }
+        function levelOrder(root) {
+            let res = [];
+            let que = [];
+            if (root === null) return [];
+            que.push(root);
+            while (que.length !== 0) {
+                let size = que.length;
+                let temp = [];
+                for (let i = 0; i < size; i++) {
+                    let node = que.shift();
+                    temp.push(node.val);
+                    if (node.left !== null) que.push(node.left);
+                    if (node.right !== null) que.push(node.right);
+                }
+                res.push(temp);
+            }
+            return res;
+        }
+
+    </script>
+</body>
+
+</html>

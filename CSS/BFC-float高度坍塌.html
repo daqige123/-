@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFC-float高度坍塌</title>
+    <!-- 如果父元素没有设置高度（想让盒子的内容来决定高度），子元素设置了浮动，那么就会出现高度坍塌。 -->
+    <!--    所以我们要清除浮动 -->
+    <style>
+        .parent {
+            width: 800px;
+            border: 2px solid blue;
+            background: lightgreen;
+            overflow: hidden;
+        }
+
+        .child {
+            border: 5px solid yellow;
+            float: left;
+            width: 40%;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">haha</div>
+        <div class="child">haha</div>
+    </div>
+</body>
+
+</html>

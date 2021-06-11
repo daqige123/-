@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二叉树的遍历</title>
+</head>
+<!-- 
+    遍历技巧： 想象一下我们实际的遍历节点的顺序。
+    先序遍历：
+        我们先遍历的是根节点，然后在左子树，
+        所以压栈应该一直压的是右节点，等到根节点和左节点都遍历完了，再弹栈（else），遍历右节点。
+    中序遍历：
+        根节点是第二次遍历的，所以我们要压栈，然后cur = cur.left, 一直到左为空，else里面就是
+        弹栈，然后遍历左子树的父节点，最后再遍历父节点的右子树。
+    
+    后序遍历：
+        我们这里采用了头插法 res.unshift(), 所以需要倒过来遍历，先加入根节点（这样他就在最后面了），
+        再去遍历右子节点。最后再去遍历左子树。这样他就在最前面。
+        
+-->
+
+<body>
+    <script>
+        function TreeNode(val, left, right) {
+            this.val = (val === undefined ? 0 : val)
+            this.right = (right === undefined ? null : right)
+            this.left = (left === undefined ? null : left)
+        }
+
+        function preOrder(root) {
+            let cur = root;
+            let res = [];
+            if (cur === null) return res;
+            let stack = [];
+            while (stack.length !== 0 || cur !== null) {
+                if (cur !== null) {
+                    res.push(cur.val);
+                    stack.push(cur.right);
+                    cur = cur.left;
+                } else {
+                    cur = stack.pop();
+                }
+            }
+            return res;
+        }
+
+        let inorderTraversal = function (root) {
+            let res = [];
+            let stack = [];
+            let cur = root;
+            while (stack.length !== 0 || cur !== null) {
+                if (cur !== null) {
+                    stack.push(cur);
+                    cur = cur.left;
+                } else {
+                    cur = stack.pop()
+                    res.push(cur.val);
+                    cur = cur.right;
+                }
+            }
+            return res;
+        }
+
+        let postOrder = function (root) {
+            let cur = root;
+            let res = [];
+            let stack = [];
+            while (cur !== null || stack.length !== 0) {
+                if (cur !== null) {
+                    stack.push(cur);
+                    res.unshift(cur.val);
+                    cur = cur.right;
+                } else {
+                    cur = stack.pop();
+                    cur = cur.left;
+                }
+            }
+            return res;
+        }
+
+    </script>
+</body>
+
+</html>

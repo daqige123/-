@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数</title>
+</head>
+<!-- 函数的本质就是：
+    几行要执行的代码，然后我们就可以用this值来指定他的执行上下文，（来给函数限定作用域）。
+-->
+
+<body>
+    <script>
+        // 函数的4种声明方式：函数声明，函数表达式，箭头函数， 使用函数的构造函数 let sum = new Function()。
+        // 一、 箭头函数：箭头函数主要是语法简洁，方便在函数内部嵌入。
+        let ints = [1, 2, 3, 4];
+        console.log(ints.map(function (i) { return i + 1; }));
+        console.log(ints.map((i) => i + 1)); // 简洁了很多。
+        //    1. 箭头函数不使用大括号时，只能有一句代码，函数会隐式返回这行代码的值。
+        //    2. 箭头函数不能使用arguments、super、和new.target，也不能用作构造函数，也没有原型。
+        let values = [5, 5, 6, 6];
+        function getSum() {
+            let sum = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+        console.log(getSum());
+        // 箭头函数和普通函数的区别：
+        // 1.箭头函数没有arguments， 然后箭头函数不能使用new.target.King
+        // 2.this, 普通函数里面的this指向的是将当前函数当作方法调用的上下文对象，
+        //     而箭头函数的this指向函数声明时的上下文，直接就不变了。
+
+
+
+
+
+        // 二、 函数的内部.  arguments对象还有一个属性.callee指向arguments所在的函数。递归时可以用
+        //  函数的内部还有一个对象：this， new.target。
+        //    定义：在标准函数中，this引用的是把函数当成方法调用的上下文对象。
+        //    1.每一个函数执行的时候都会给他生成一个执行上下文，同时执行上下文会关联一个变量对象，
+        //       变量对象里面有函数的参数、变量、还有内部的函数声明。
+        //    2. 函数执行时同时会生成变量对象的作用域链，这个作用域链将当前的变量对象和父变量对象串起来。作用域链就是用来搜索用的。
+        //    3. this在标准函数里面就引用的是把函数当成方法调用的上下文对象，理论上就是他的父变量对象。
+        //       箭头函数的tthis引用的是定义箭头函数时的上下文。后面不会改变的。
+        //    4. new.target是用来判断函数是否用new操作符来构建的。
+        function King() {
+            this.royalName = "daqige";
+            // 这里的this是引用King的实例。
+            setTimeout(() => console.log(this.royalName));
+        }
+        function Queen() {
+            this.royalName = "zhangzheng";
+            // 这里的this是指向window对象
+            setTimeout(function () { console.log(this.royalName); });
+        }
+        new King();  // daqige;
+        new Queen();   // undefined 
+
+        //  三、apply, call, bind(), this; 三个函数里面都可以传入一个函数运行的作用域，
+        //  如果是一个this的话，那么this一般指向的就是当前上下文的父变量对象，如果传入的是对象，就将对象作为函数执行的作用域。
+
+        window.color = "red";
+        let o = {
+            color: "bule"
+        };
+        function sayColor() {
+            console.log(this.color);
+        }
+        sayColor(); //red
+        sayColor.call(this); //red;
+        sayColor.call(o);  // bule
+        let objectSaycolor = sayColor.bind(o);
+        objectSaycolor(); // bule
+    </script>
+</body>
+
+</html>

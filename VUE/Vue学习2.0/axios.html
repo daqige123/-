@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./vue.js"></script>
+    <!-- 1.
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    2. axios.get(地址:?key=value&key2=value2).then(function(response){}, function(err){})
+    这里有两个回调函数，第一个是请求成功时返回，里面的形参可以用来获取信息，一个是服务器来响应的内容，一个是报错的信息。
+    axios.post(地址:,{key:value,key2:value2}).then(function(response){}, function(err){})
+    3. 随机获取笑话的接口： https://autumnfish.cn/api/joke/list (get, 请求参数：num 笑话的条数， 相应的内容是：随机笑话)
+    用户注册的接口： https://autumnfish.cn/api/user/reg (post, 请求参数：username, 响应内容： 注册成功或失败) -->
+
+</head>
+
+<body>
+    <div id="app">
+        <button class="get" value="get请求" @click="getjoker">joker</button>
+        <button class="post" value="post请求" @click="regist">用户注册</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+                getjoker: function () {
+                    axios.get("https://autumnfish.cn/api/joke/list1233?num=3")
+                        .then(function (response) {
+                            console.log(response);
+                        }, function (error) {
+                            console.log(error);
+                        })
+                },
+                regist: function () {
+
+                }
+            }
+        })
+        document.querySelector(".post").onclick = function () {
+            axios.post("https://autumnfish.cn/api/user/reg32", { username: "jack" })
+                .then(function (response) {
+                    console.log(response);
+                }, function (err) {
+                    console.log(err);
+                });
+        }
+
+    </script>
+</body>
+
+
+</html>

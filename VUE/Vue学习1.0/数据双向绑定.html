@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据劫持</title>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <p id="p"></p>
+
+    <script>
+
+        // 数据
+        let obj = {};
+        obj.name = "data";
+
+        // 元素（view）
+        let input = document.querySelector("#input");
+        let p = document.querySelector("#p");
+
+        // 数据变化==》view（元素的属性值改变）
+        Object.defineProperty(obj, 'name', {
+            get() {
+                return val;
+            },
+            set(newVal) {
+                input.value = newVal;   // 数据改变 ===> view改变
+                p.innerHTML = newVal;   // 数据改变 ===> view改变
+            }
+        });
+
+        // 元素属性值改变了=》 数据变化 
+        input.addEventListener("input", function (even) {
+            obj.name = even.target.value;  // 将用户输入的数据赋值给对象的属性。 
+        })
+
+    </script>
+</body>
+
+</html>

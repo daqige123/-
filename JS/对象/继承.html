@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承的方式</title>
+</head>
+
+<body>
+    <script>
+        // 一、 1.原型链  原理就是实例的[[prototype]]会指向构造函数的prototype。
+        function SuperType() {
+            this.property = true;
+        }
+        SuperType.prototype.getSuperValue = function () {
+            return this.property;
+        }
+        function SubType() {
+            this.subproperty = false;
+        }
+        // 继承超类
+        SubType.prototype = new SuperType();  // subType的原型[[prototype]]指向了SuperType的原型。
+        // 这里SubType里面有自己的protype, 然后原型又是SuperType的实例，所有子类的原型里面有父类的property，还可以向上访问父类的原型的属性和方法。
+
+        //2. 我们需要先初始化原型（就是先继承超类），继承以后再给子类添加属性和方法，这样才会覆盖父类的方法。
+        SubType.prototype.getSubTypeValue = function () {
+            return this.subproperty;
+        }
+        SubType.prototype.getSuperTypeValue = function () {  // 覆盖继承的父类原型中的方法
+            return false;
+        }
+        // 原型的问题，引用值问题， 不能给父类构造函数传参
+
+        // 二、 盗用构造函数  原理：在子类构造函数中调用父类的构造函数。
+
+        function SuperType() {
+            this.color = ["red", "bule", "gree"];
+        }
+        function SubType() {
+            SuperType.call(this);   // 函数其实就是在特定上下文中执行代码的简单对象，
+        }                          // 所以可以用apply,call方法以新创建的对象为上下文执行构造函数。
+        // 盗用构造函数缺点：函数不能重用。
+
+        // 3.组合继承
+
+    </script>
+</body>
+
+</html>

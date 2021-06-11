@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>父子组件值之间传值练习</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycmpt :cnum1="num1" :cnum2="num2" @changparent1="changeparent1" @changparent2="changparent2"></mycmpt>
+    </div>
+
+    <template id="mycmpt">
+        <div>
+            <h2>props:{{cnum1}}</h2>
+            <h2> data:{{cdnum1}}</h2>
+            <input type="text" :value="cdnum1" @input="sendnum1">
+
+            <h2>props:{{cnum2}}</h2>
+            <h2> data:{{cdnum2}}</h2>
+
+            <input type="text" :value="cdnum2" @input="sendnum2">
+            <br>
+
+        </div>
+    </template>
+
+    <script>
+        const mycmpt = {
+            template: '#mycmpt',
+            props: {
+                cnum1: Number,
+                cnum2: Number,
+            },
+            data() {
+                return {
+                    cdnum1: this.cnum1,
+                    cdnum2: this.cnum2,
+                }
+            },
+            methods: {
+                sendnum1(e) {
+                    this.cdnum1 = e.target.value;
+                    this.$emit('changparent1', this.cdnum1);
+                },
+                sendnum2(e) {
+                    this.cdnum2 = e.target.value;
+                    this.$emit('changparent2', this.cdnum2);
+                }
+            },
+
+        }
+
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                num1: 1,
+                num2: 2,
+            },
+            methods: {
+                changeparent1(value) {
+                    this.num1 = value
+                },
+                changparent2(value) {
+                    this.num2 = value
+                }
+
+            },
+            components: {
+                mycmpt,
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quickSort</title>
+</head>
+
+<body>
+    <script>
+        let arr = [12, 20, 5, 16, 15, 1, 30, 45, 23, 9];
+        console.log("arr: " + arr);
+        function quicksort(arr, low, high) {
+            if (low < high) {
+                let i = low, j = high;
+                let piovt = arr[i];
+                while (i < j) {
+                    while (i < j && arr[j] >= piovt) j--;
+                    if (i < j) arr[i] = arr[j];
+                    while (i < j && arr[i] <= piovt) i++;
+                    if (i < j) arr[j] = arr[i];
+                }
+                arr[i] = piovt;
+                quicksort(arr, low, i - 1);
+                quicksort(arr, i + 1, high);
+            }
+        }
+        quicksort(arr, 0, arr.length - 1);
+        console.log("arr: " + arr);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cnt1 :cmove="movies" :cmessage="messages"> </cnt1>
+    </div>
+    <template id="cnt1">
+        <div>
+            <p> 消息{{cmessage}}：</p>
+            <p> 电影：{{cmove}} </p>
+        </div>
+    </template>
+    <script>
+
+        const cnt1 = {
+            template: '#cnt1',
+            data() { return {} },
+            props: ["cmove", "cmessage"],
+        }
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                movies: ["海贼王", "海王", "daqige"],
+                messages: "nihaoya!",
+            },
+            components: {
+                cnt1,
+            },
+            methods: {
+
+            },
+        });
+    </script>
+</body>
+
+</html>

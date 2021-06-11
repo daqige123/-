@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象、类和面向对象编程</title>
+</head>
+
+<body>
+    <script>
+        // 1. Object.defineProperty(对象，修改的对象属性名，修改属性的特性对象{})
+        // 用Object。defineProperty() 来定义或改变对象属性的特性。
+        let person = {};
+        Object.defineProperty(person, 'name', {
+            writable: false,
+            value: 'daqige',
+        });
+        console.log(person);
+        // 2. 属性的特性分为两种，上面的是数据属性，还有访问器属性。Get，Set，Configurable,Enumerable.
+        // 定义一个book对象， 包含私有成员year_和公共成员edition
+        let book = {
+            year_: 2021,
+            edition: 1
+        };
+        Object.defineProperty(book, "year", {
+            get() {
+                return this.year_;
+            },
+            set(newVal) {
+                if (newVal > 2021) {
+                    this.year_ = newVal;
+                    this.edition = newVal - 2021 + 1;
+                }
+            }
+        });
+        book.year = 202;
+        console.log(book.edition);
+        // 3. Object.assign() 合并对象，浅复制。
+        // 4. 对象的迭代
+    </script>
+</body>
+
+</html>
