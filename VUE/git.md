@@ -33,6 +33,20 @@ git push https://github.com/daqige123/supermall master
 
 
 
+### git 官方建议
+
+```
+echo "# algorithm" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/daqige123/algorithm.git
+git push -u origin main
+```
+
+
+
 #### git 的一些命令
 
 git init 初始化仓库 
